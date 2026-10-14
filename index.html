@@ -1,0 +1,1024 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="K. Sai Balaji's personal portfolio website showcasing skills, projects, and contact information.">
+    <title>K. Sai Balaji | Portfolio</title>
+
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg: #080b14;
+            --card: rgba(255, 255, 255, 0.045);
+            --primary: #00f5ff;
+            --secondary: #8b5cf6;
+            --text: #f4f7ff;
+            --muted: #a5aec3;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button, input, textarea {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 15px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-description {
+            text-align: center;
+            color: var(--muted);
+            max-width: 650px;
+            margin: 0 auto 45px;
+        }
+
+        /* ===== BACKGROUND EFFECT ===== */
+        .background-glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.18;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .glow-one {
+            background: var(--primary);
+            top: 10%;
+            left: -150px;
+        }
+
+        .glow-two {
+            background: var(--secondary);
+            right: -150px;
+            bottom: 10%;
+        }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(8, 11, 20, 0.85);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--muted);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            color: white;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 8px;
+            background: var(--primary);
+            color: #071018;
+            font-weight: bold;
+            border: 1px solid var(--primary);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            color: var(--primary);
+            background: rgba(0, 245, 255, 0.06);
+            border-radius: 30px;
+            padding: 7px 15px;
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.7rem);
+            line-height: 1.12;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero h2 {
+            color: var(--muted);
+            font-size: clamp(1.2rem, 3vw, 1.7rem);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-circle {
+            width: min(300px, 70vw);
+            height: min(300px, 70vw);
+            border-radius: 50%;
+            border: 2px solid rgba(0, 245, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #15263c, #0b1020 70%);
+            box-shadow: 0 0 55px rgba(0, 245, 255, 0.15);
+            animation: float 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .profile-inner {
+            width: 85%;
+            height: 85%;
+            border: 1px dashed rgba(0, 245, 255, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-initials {
+            font-size: 5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: 0 0 25px rgba(0, 245, 255, 0.4);
+        }
+
+        .profile-caption {
+            display: block;
+            color: var(--muted);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .glass-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 18px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 245, 255, 0.4);
+        }
+
+        .glass-card h3 {
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+        }
+
+        .glass-card p {
+            color: var(--muted);
+        }
+
+        .about-details {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .detail {
+            padding: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.035);
+            overflow-wrap: anywhere;
+        }
+
+        .detail strong {
+            color: var(--primary);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-card {
+            text-align: center;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        /* ===== PROJECTS ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .project-banner {
+            height: 155px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.4rem;
+            background: linear-gradient(135deg, #102a43, #24204b);
+        }
+
+        .project-content {
+            padding: 24px;
+        }
+
+        .project-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-size: 0.75rem;
+            color: var(--primary);
+            background: rgba(0, 245, 255, 0.08);
+            padding: 5px 9px;
+            border-radius: 5px;
+        }
+
+        .project-link {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 35px;
+        }
+
+        .contact-info p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            margin: 20px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: white;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .contact-form textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .form-message {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 25px 0;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        footer span {
+            color: var(--primary);
+        }
+
+        /* ===== SCROLL ANIMATION ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 850px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 45px;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                grid-row: 1;
+            }
+
+            .profile-circle {
+                width: 230px;
+                height: 230px;
+            }
+
+            .profile-initials {
+                font-size: 4rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #0b1020;
+                padding: 25px;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .section {
+                padding: 75px 0;
+            }
+
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .glass-card {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">Sai<span>Balaji.</span></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="menu-btn" id="menuBtn"
+                    aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="container hero-content">
+
+                <div class="hero-text reveal">
+                    <span class="hero-tag">✦ Welcome to my portfolio</span>
+
+                    <h1>Hi, I'm <span>K. Sai Balaji</span></h1>
+
+                    <h2>Student | Aspiring Developer</h2>
+
+                    <p>
+                        Welcome to my digital space! I'm Sai Balaji, passionate
+                        about technology, programming, and building creative
+                        digital experiences. I'm constantly learning new skills
+                        and turning ideas into practical projects.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn">Explore My Work ↗</a>
+                        <a href="#contact" class="btn btn-outline">Contact Me</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <div class="profile-circle">
+                        <div class="profile-inner">
+                            <div>
+                                <div class="profile-initials">SB</div>
+                                <span class="profile-caption">CREATIVE MIND</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2 class="section-title reveal">About <span>Me</span></h2>
+
+                <p class="section-description reveal">
+                    A little introduction to who I am and what I want to achieve.
+                </p>
+
+                <div class="about-grid">
+                    <div class="glass-card reveal">
+                        <h3>Who Am I?</h3>
+
+                        <p>
+                            I'm K. Sai Balaji, an enthusiastic learner interested
+                            in software development and modern technology.
+                            I enjoy exploring programming concepts, solving
+                            problems, and developing useful applications.
+                        </p>
+
+                        <br>
+
+                        <p>
+                            My goal is to improve my technical abilities,
+                            build meaningful projects, and grow into a skilled
+                            professional in the technology industry.
+                        </p>
+                    </div>
+
+                    <div class="glass-card reveal">
+                        <h3>Personal Details</h3>
+
+                        <div class="about-details">
+                            <div class="detail">
+                                <strong>Name:</strong> K. Sai Balaji
+                            </div>
+
+                            <div class="detail">
+                                <strong>Email:</strong>
+                                <a href="mailto:kurukuntasaibalaji46@gmail.com">
+                                    kurukuntasaibalaji46@gmail.com
+                                </a>
+                            </div>
+
+                            <div class="detail">
+                                <strong>Phone:</strong>
+                                <a href="tel:+918886768101">+91 8886768101</a>
+                            </div>
+
+                            <div class="detail">
+                                <strong>Interests:</strong>
+                                Coding, Technology, Learning, Projects
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="section" id="skills">
+            <div class="container">
+                <h2 class="section-title reveal">My <span>Skills</span></h2>
+
+                <p class="section-description reveal">
+                    Technologies and skills I am learning and developing.
+                    Update these cards to reflect your actual experience.
+                </p>
+
+                <div class="skills-grid">
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">💻</div>
+                        <h3>HTML</h3>
+                        <p>Creating structured and accessible web pages.</p>
+                    </div>
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">🎨</div>
+                        <h3>CSS</h3>
+                        <p>Designing attractive and responsive interfaces.</p>
+                    </div>
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">⚡</div>
+                        <h3>JavaScript</h3>
+                        <p>Adding interactive features to websites.</p>
+                    </div>
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">🐍</div>
+                        <h3>Python</h3>
+                        <p>Learning programming and problem-solving.</p>
+                    </div>
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">🛠️</div>
+                        <h3>Problem Solving</h3>
+                        <p>Developing logical thinking and debugging skills.</p>
+                    </div>
+
+                    <div class="glass-card skill-card reveal">
+                        <div class="skill-icon">📚</div>
+                        <h3>Continuous Learning</h3>
+                        <p>Exploring new tools and improving my abilities.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="section" id="projects">
+            <div class="container">
+                <h2 class="section-title reveal">My <span>Projects</span></h2>
+
+                <p class="section-description reveal">
+                    A selection of projects you can customize with your own
+                    completed work and GitHub links.
+                </p>
+
+                <div class="projects-grid">
+
+                    <article class="glass-card project-card reveal">
+                        <div class="project-banner">🌐</div>
+
+                        <div class="project-content">
+                            <h3>Personal Portfolio</h3>
+
+                            <p>
+                                A responsive personal website showcasing
+                                my introduction, skills, projects, and contact details.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+
+                            <a href="#home" class="project-link">View Website ↗</a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card reveal">
+                        <div class="project-banner">🤖</div>
+
+                        <div class="project-content">
+                            <h3>AI-Based Project</h3>
+
+                            <p>
+                                An upcoming project idea exploring artificial
+                                intelligence and practical technology solutions.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>AI</span>
+                                <span>Learning</span>
+                            </div>
+
+                            <a href="#contact" class="project-link">
+                                Project Enquiries ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card reveal">
+                        <div class="project-banner">📱</div>
+
+                        <div class="project-content">
+                            <h3>Web Application</h3>
+
+                            <p>
+                                An application concept focused on creating a
+                                simple, useful, and user-friendly digital experience.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>Web Design</span>
+                                <span>UI/UX</span>
+                                <span>Development</span>
+                            </div>
+
+                            <a href="#contact" class="project-link">
+                                Project Enquiries ↗
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="section" id="contact">
+            <div class="container">
+
+                <h2 class="section-title reveal">
+                    Contact <span>Me</span>
+                </h2>
+
+                <p class="section-description reveal">
+                    Have a project idea or want to connect? Feel free to reach out.
+                </p>
+
+                <div class="contact-grid">
+
+                    <div class="contact-info reveal">
+                        <div class="glass-card">
+                            <h3>Let's Connect!</h3>
+
+                            <p>
+                                I'm always interested in learning, collaborating,
+                                and discussing new ideas.
+                            </p>
+
+                            <div class="contact-item">
+                                <strong>📧 Email</strong>
+                                <a href="mailto:kurukuntasaibalaji46@gmail.com">
+                                    kurukuntasaibalaji46@gmail.com
+                                </a>
+                            </div>
+
+                            <div class="contact-item">
+                                <strong>📱 Phone</strong>
+                                <a href="tel:+918886768101">+91 8886768101</a>
+                            </div>
+
+                            <div class="contact-item">
+                                <strong>📍 Location</strong>
+                                India
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card reveal">
+                        <form class="contact-form" id="contactForm">
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Your Name"
+                                aria-label="Your name"
+                                required
+                            >
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Your Email"
+                                aria-label="Your email"
+                                required
+                            >
+
+                            <input
+                                type="text"
+                                id="subject"
+                                placeholder="Subject"
+                                aria-label="Subject"
+                                required
+                            >
+
+                            <textarea
+                                id="message"
+                                placeholder="Write your message..."
+                                aria-label="Your message"
+                                required
+                            ></textarea>
+
+                            <button type="submit" class="btn">
+                                Send Message ↗
+                            </button>
+
+                            <p class="form-message" id="formMessage"
+                               role="status" aria-live="polite"></p>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>
+                © <span id="year"></span> <span>K. Sai Balaji</span>.
+                Made with passion and curiosity.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== MOBILE NAVIGATION =====
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("active");
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+            menuBtn.textContent = isOpen ? "✕" : "☰";
+        });
+
+        // Close the menu after clicking a navigation link.
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+                menuBtn.setAttribute("aria-expanded", "false");
+                menuBtn.textContent = "☰";
+            });
+        });
+
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            revealElements.forEach(element => observer.observe(element));
+        } else {
+            revealElements.forEach(element => element.classList.add("visible"));
+        }
+
+        // ===== AUTOMATIC FOOTER YEAR =====
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        // ===== CONTACT FORM =====
+        // This form opens the visitor's default email application.
+        // It does not send messages directly or store submissions.
+
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const subject = document.getElementById("subject").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            if (!name || !email || !subject || !message) {
+                formMessage.textContent = "Please fill in all fields.";
+                return;
+            }
+
+            const recipient = "kurukuntasaibalaji46@gmail.com";
+
+            const body =
+                "Name: " + name + "\n" +
+                "Email: " + email + "\n\n" +
+                "Message:\n" + message;
+
+            const mailto =
+                "mailto:" + recipient +
+                "?subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+
+            formMessage.textContent =
+                "Opening your email application...";
+
+            window.location.href = mailto;
+        });
+    </script>
+
+</body>
+</html>
+```
